@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        //---------------------------------1st function--------------------//
+        
+        
+        function camelize(str) {
+            var arr =  str.split('-');
+            var result = [];
+            result.push(arr[0]);
+            for (var item = 1; item < arr.length; item++) {
+                result.push(arr[item][0].toUpperCase() + arr[item].slice(1));
+            }
+            return result.join('');
+        }
+        console.log(camelize('my-short-string'));
+
+        
+        var stringsInCebab = ['border-top-left-width', 'font-size', 'background-color']
+        var stringsInCamel = stringsInCebab.map(camelize);
+
+        // console.log(stringsInCebab);
+        console.log(stringsInCamel);
+
+        
+        //---------------------------------myMap function--------------------//
+
+        function myMap(arr, callback) {             //  myMap - function
+            var result = [];
+            for (var item of arr) {
+                result.push(callback(item));
+            }
+            return result;
+        }
+
+        function square(num) {                       //  callback - function
+            return num * num;
+        }
+
+
+        var initialArray = [1, 2, 3, 4, 5];
+        var myMapResult = myMap(initialArray, square);
+
+        console.log(initialArray); // старый массив не изменился
+        console.log(myMapResult);  // ф-я myMap в результате возвратила новый массив
+        
+
+        //---------------------------------myFilter function--------------------//
+        
+        function myFilter(arr, callback) {             //  myFilter - function
+            var result = [];
+            for (var item of arr) {
+                if (callback(item)) {
+                    result.push(item);
+                }
+            }
+            return result;
+        }
+
+
+        function sortNubers(num) {                     //  callback - function
+            return num > 3;
+        }
+
+        var myFilterResult = myFilter(initialArray, sortNubers);
+        
+        console.log(initialArray);                   // старый массив не изменился
+        console.log(myFilterResult);                 // ф-я myFilter в результате возвратила новый массив
+
+
+
+
+    </script>
+
+</body>
+</html>
